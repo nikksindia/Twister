@@ -14,7 +14,7 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>Twister.xcscheme</key>
+		<key>Twister.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
@@ -23,6 +23,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>9F5398F620EA5CA40040E997</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F53992220EB707B0040E997</key>
 		<dict>
 			<key>primary</key>
 			<true/>
