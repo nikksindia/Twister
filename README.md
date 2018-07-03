@@ -2,6 +2,7 @@
 
 [![Swift Version][swift-image]][swift-url]
 [![License][license-image]][license-url]
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Twister.svg)](https://cocoapods.org/pods/Twister)  
 ![Platform](https://img.shields.io/cocoapods/p/Twister.svg?style=flat)
 
@@ -21,6 +22,13 @@ You can use [CocoaPods](https://cocoapods.org/) to install `Twister` by adding i
 platform :ios, '9.0'
 use_frameworks!
 pod 'Twister'
+```
+
+#### Carthage
+Create a `Cartfile` that lists the framework and run `carthage update`. Follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios) to add `$(SRCROOT)/Carthage/Build/iOS/Twister.framework` to an iOS project.
+
+```
+github "nikksindia/Twister"
 ```
 
 #### Manually
