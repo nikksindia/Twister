@@ -5,7 +5,7 @@
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Twister.svg)](https://cocoapods.org/pods/Twister)  
 ![Platform](https://img.shields.io/cocoapods/p/Twister.svg?style=flat)
 
-Description: 
+Twister makes it easy to write a type safe network layer for any API. What it only needs is a model expected as API response, to confirm 'Codable(Encodable&Decodable)' protocol.
 
 ## Requirements
 
