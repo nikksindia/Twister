@@ -1,0 +1,6 @@
+framework module Pods_Twister {
+  umbrella header "Pods-Twister-umbrella.h"
+
+  export *
+  module * { export * }
+}
