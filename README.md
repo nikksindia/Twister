@@ -39,38 +39,38 @@ github "nikksindia/Twister"
 
 ## Usage
 
-Follows these steps:
+#Follows these steps:
 
-1. Create a codable model for your response. See example below:
-```swift
-struct Channel:Codable{
-    var id:String?
-    var kind:String?
-    var etag:String?
-    var userId:String?
-}
-```
-2. Create a struct to manage all your endpoints. See example below:
-```swift
-let baseUrl = "https://www.yourdomain.com/v3/"
-struct TwistRoutes{
-    static let channelList = Route<Channel>(baseUrl:baseUrl,endPoint:"channels",methodType:.get)
-    static let productList = Route<Product>(baseUrl:baseUrl,endPoint:"products",methodType:.post)
-}
-```
-3. Now you are ready to call API using Twister. Go to your view controller and use 'apiRequest' method as follows:
-```swift
-let params = ["mine":true,"part":"contentDetails"] as [String : AnyObject]
-let header = ["authKey":"CRREW11472"]
-Twister.sharedInstance.apiRequest(fromRoute: TwistRoutes.channelList,params,header) { (result) in
-    switch result {
-    case .success(let model):
-        print (model)
-    case .failure(let error):
-        print (error)
-    }
-}
-```
+#1. Create a codable model for your response. See example below:
+#```swift
+#struct Channel:Codable{
+#    var id:String?
+#    var kind:String?
+#    var etag:String?
+#    var userId:String?
+#}
+#```
+#2. Create a struct to manage all your endpoints. See example below:
+#```swift
+#let baseUrl = "https://www.yourdomain.com/v3/"
+#struct TwistRoutes{
+#    static let channelList = Route<Channel>(baseUrl:baseUrl,endPoint:"channels",methodType:.get)
+#    static let productList = Route<Product>(baseUrl:baseUrl,endPoint:"products",methodType:.post)
+#}
+#```
+#3. Now you are ready to call API using Twister. Go to your view controller and use 'apiRequest' method as follows:
+#```swift
+#let params = ["mine":true,"part":"contentDetails"] as [String : AnyObject]
+#let header = ["authKey":"CRREW11472"]
+#Twister.sharedInstance.apiRequest(fromRoute: TwistRoutes.channelList,params,header) { (result) in
+#    switch result {
+#    case .success(let model):
+#        print (model)
+#    case .failure(let error):
+#        print (error)
+#    }
+#}
+#```
 
 ## Contribute
 
