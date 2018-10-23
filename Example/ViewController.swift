@@ -19,21 +19,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func fetchDataButtonAction(_ sender: Any) {
-        requestToGetChannelList()
-    }
-    func requestToGetChannelList(){
-        let params = ["mine":true,"part":"contentDetails"] as [String : AnyObject]
-        Twister.sharedInstance.apiRequest(fromRoute: TwistRoutes.channelList,params) { (result) in
-            switch result {
-            case .success(let model):
-                print (model)
-            case .failure(let error):
-                print (error)
-            }
-        }
-    }
     
 }
 

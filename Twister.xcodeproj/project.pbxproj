@@ -22,6 +22,10 @@
 
 /* Begin PBXBuildFile section */
 		70BCFEC97D57D5D3428E21FF /* Pods_Twister.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA204FC1B444FCCD7DC07581 /* Pods_Twister.framework */; };
+		9F003A04217F1F0600F24D8D /* TwistConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F003A03217F1F0600F24D8D /* TwistConfig.swift */; };
+		9F003A06217F1F2200F24D8D /* TwistRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F003A05217F1F2200F24D8D /* TwistRequest.swift */; };
+		9F003A08217F1F3B00F24D8D /* TwistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F003A07217F1F3B00F24D8D /* TwistResponse.swift */; };
+		9F003A0A217F1F5500F24D8D /* TwistEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F003A09217F1F5500F24D8D /* TwistEncoder.swift */; };
 		9F5398FC20EA5CA40040E997 /* Twister.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F5398FA20EA5CA40040E997 /* Twister.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F53990320EA5E720040E997 /* Twister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53990220EA5E720040E997 /* Twister.swift */; };
 		9F53990D20EA5FDC0040E997 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53990C20EA5FDC0040E997 /* AppDelegate.swift */; };
@@ -34,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F003A03217F1F0600F24D8D /* TwistConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwistConfig.swift; sourceTree = "<group>"; };
+		9F003A05217F1F2200F24D8D /* TwistRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwistRequest.swift; sourceTree = "<group>"; };
+		9F003A07217F1F3B00F24D8D /* TwistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwistResponse.swift; sourceTree = "<group>"; };
+		9F003A09217F1F5500F24D8D /* TwistEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwistEncoder.swift; sourceTree = "<group>"; };
 		9F5398F720EA5CA40040E997 /* Twister.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Twister.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F5398FA20EA5CA40040E997 /* Twister.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Twister.h; sourceTree = "<group>"; };
 		9F5398FB20EA5CA40040E997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,6 +113,10 @@
 			children = (
 				9F5398FA20EA5CA40040E997 /* Twister.h */,
 				9F53990220EA5E720040E997 /* Twister.swift */,
+				9F003A03217F1F0600F24D8D /* TwistConfig.swift */,
+				9F003A05217F1F2200F24D8D /* TwistRequest.swift */,
+				9F003A07217F1F3B00F24D8D /* TwistResponse.swift */,
+				9F003A09217F1F5500F24D8D /* TwistEncoder.swift */,
 				9F5398FB20EA5CA40040E997 /* Info.plist */,
 			);
 			path = Twister;
@@ -303,7 +315,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F003A08217F1F3B00F24D8D /* TwistResponse.swift in Sources */,
 				9F53990320EA5E720040E997 /* Twister.swift in Sources */,
+				9F003A04217F1F0600F24D8D /* TwistConfig.swift in Sources */,
+				9F003A0A217F1F5500F24D8D /* TwistEncoder.swift in Sources */,
+				9F003A06217F1F2200F24D8D /* TwistRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

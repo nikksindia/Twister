@@ -21,9 +21,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5C-S4-7QB">
                                 <rect key="frame" x="156.5" y="318" width="61" height="30"/>
                                 <state key="normal" title="Get Data"/>
-                                <connections>
-                                    <action selector="fetchDataButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Xh-ZK-XUW"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

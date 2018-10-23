@@ -7,5 +7,5 @@ target 'Twister' do
 
   # Pods for Twister
   pod 'Alamofire'
-
+  pod 'HydraAsync'
 end

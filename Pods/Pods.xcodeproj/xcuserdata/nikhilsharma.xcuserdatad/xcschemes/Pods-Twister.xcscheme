@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7583A5FD7A3006D0CD6160AFED8FC9FC"
+               BlueprintIdentifier = "F855F11B9755C04BC2183C143C8CDF06"
                BuildableName = "Pods_Twister.framework"
                BlueprintName = "Pods-Twister"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7583A5FD7A3006D0CD6160AFED8FC9FC"
+            BlueprintIdentifier = "F855F11B9755C04BC2183C143C8CDF06"
             BuildableName = "Pods_Twister.framework"
             BlueprintName = "Pods-Twister"
             ReferencedContainer = "container:Pods.xcodeproj">

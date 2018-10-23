@@ -1,12 +1,15 @@
 PODS:
   - Alamofire (4.7.2)
+  - HydraAsync (1.2.1)
 
 DEPENDENCIES:
   - Alamofire
+  - HydraAsync
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
 
-PODFILE CHECKSUM: 7b284fa36d6b530fc011d89895e745c6f02b9ef7
+PODFILE CHECKSUM: 9b9f6476af5772232043a08217d98a0abd16f9a7
 
 COCOAPODS: 1.4.0

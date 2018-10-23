@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Twister"
-  s.version      = "1.0.0"
+  s.version      = "2.0.0"
   s.summary      = "Type safe network layer written on the top of Alamofire."
 
   # This description is used to generate tags and improve search results.
@@ -62,7 +62,7 @@ Pod::Spec.new do |s|
   #
 
   s.platform     = :ios
-  s.swift_version = "4.0"
+  s.swift_version = "4.1"
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms

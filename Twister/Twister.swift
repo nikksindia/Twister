@@ -5,90 +5,82 @@
 //  Created by Nikhil Sharma on 02/07/18.
 //  Copyright © 2018 Nikhil Sharma. All rights reserved.
 //
+/////////////////////////////////////////////////////////////
+//URL Parameters (Optional): this is another Dictionary ([String:Any?])  used to compose a dynamic endpoint. If your endpoint require dynamic values (ie. "/articles/{category}/id/{art_id}" ) you can use this dictionary to fill up placeholders (ie. passing ["category":"scifi","art_id":5999] ).
+
+//Body (Optional): this the body of the request; its a struct of type RequestBody  where you can specify the data to put in body. You can create a JSON Body using let body = RequestBody(json: data)  (you can pass any JSON serializable structure); URL Encoded Body is supported (let body = RequestBody(urlEncoded: paramsDict) . Finally you can create a body with raw String  or plain Data  or provide your own encoding.
+/////////////////////////////////////////////////////////////
 
 import Foundation
 import Alamofire
-
-/// Result type which includes 'success' and 'failure' cases
-///
-/// - success: returns model as success output
-/// - failure: return error as failure output
-public enum Result<Model> {
-    case success(Model)
-    case failure(Error)
-}
+import Hydra
 
 ///This type encapsulates baseUrl, endpoint, methodType needed by Alamofire request
-public struct Route<Model>{
-    var r_baseUrl:String
+public struct Route{
     var r_endpoint:String
     var r_methodType:HTTPMethod
     
-    public init(baseUrl:String,endPoint:String,methodType:HTTPMethod){
-        r_baseUrl = baseUrl
-        r_endpoint = endPoint
-        r_methodType = methodType
+    public init(endPoint:String,methodType:HTTPMethod){
+        self.r_endpoint = endPoint
+        self.r_methodType = methodType
     }
     
 }
 
-public class Twister:NSObject{
+public enum TwistError:Error{
+    case configurationError(_ : String)
+    case invalidURL(_: String)
+    case missingEndpoint
+    case noResponse
+    case encodingFailed(_ : Any)
+    case invalidRequestBody(_ : Any?)
+}
+
+public class Twister{
     
-    /// Singleton instance
-    public static var sharedInstance = Twister()
-    
-    /// Initializer
-    private override init() { }
-    
-    public typealias resultHandler<Model> = (Result<Model>) -> Void
-    public typealias requestParams = [String:AnyObject]
+    public var configuration:TwistConfig?
+    public init(_ config:TwistConfig? = nil){
+        if let conf = config{
+            self.configuration = conf
+        }else{
+            self.configuration = TwistConfig()
+        }
+    }
     
     /// Serial queue for cache network operations
-    let networkQueue = DispatchQueue.init(label: "com.nikksdev.networkQueue")
-    
+    let networkQueue = DispatchQueue.init(label: "com.twister.networkQueue")
     
     /// This method is used to make an api call using twister
     ///
     /// - Parameters:
-    ///   - route: Route type object with expected 'Model' response type
-    ///   - params: request parameters
-    ///   - headers: request headers
-    ///   - completion: completion handler
-    public func apiRequest<Model: Codable> (fromRoute route: Route<Model>,_ params:requestParams? = nil,_ headers:[String:String]? = nil,
-                                     completion:@escaping resultHandler<Model>) {
-        
-        // make sure the endpoint path is a valid URL
-        guard let url = URL(string: route.r_baseUrl+route.r_endpoint) else {
-            completion(.failure(NSError(domain: "", code: 500,userInfo: ["error":"invalid endpoints supplied"])))
-            return
-        }
-        
-        //Alamofire uses its own queue for request operation and return response in main queue if we don't specify any queue for response handler.
-        Alamofire.request(url, method: route.r_methodType, parameters: params, encoding: URLEncoding.default, headers: headers).responseData(queue: networkQueue){ (response) in
+    ///   - request: TwistRequest object which encapculates request params,headers etc.
+    ///   - autoRetryCount: number of times api should retry automatically
+    /// - Returns: promise with reponse data encapsulated in TwistReponse object
+    func apiRequest<Model>(request:TwistRequest<Model>,autoRetryCount:Int? = nil)->Promise<TwistResponse<Model>>{
+        guard let config = self.configuration else{ fatalError("twistScheme not found.") }
+        let operation = Promise<TwistResponse<Model>>(in: request.context ?? .custom(queue: networkQueue), token: request.invalidationToken,{ (fulfill, reject, status) in
             
-            guard response.error == nil else {
-                completion(.failure(response.error!))
-                return
-            }
-            
-            //since we have passed our own queue, response will be in our queue
-            //Switch to main queue before performing any ui operations
-            if  let data = response.data{
-                do{
-                    let model = try JSONDecoder().decode(Model.self, from: data)
-                    completion(.success(model))
-                }catch let error{
-                    completion(.failure(error))
+            let rq = try Alamofire.request(request.urlRequest(in: config))
+            rq.responseData{ (responseData) in
+                let response = TwistResponse<Model>(responseData)
+                switch response.type{
+                case .success:
+                    do{
+                        try response.decodeJSON()
+                        fulfill(response)
+                    }catch let error{
+                        reject(error)
+                    }
+                case .failure(let code):
+                    let error = NSError(domain: "", code: code, userInfo: nil)
+                    reject(error)
+                case .noResponse:
+                    reject(TwistError.noResponse)
                 }
-            } else {
-                completion(.failure(NSError(  domain: "",
-                                              code: 1000,
-                                              userInfo: ["error":"expected a diferent model"])))
             }
-        }
-        
+            
+        })
+        guard let retryAttempts = autoRetryCount else { return operation } // single shot
+        return operation.retry(retryAttempts) // retry n times
     }
 }
-
-
-
