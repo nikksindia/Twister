@@ -83,7 +83,7 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 
 [https://github.com/nikksindia](https://github.com/nikksindia/)
 
-[swift-image]:https://img.shields.io/badge/swift-4.0-orange.svg
+[swift-image]:https://img.shields.io/badge/swift-4.1-orange.svg
 [swift-url]: https://swift.org/
 [license-image]: https://img.shields.io/badge/License-MIT-green.svg
 [license-url]: https://github.com/nikksindia/Twister/License.md
