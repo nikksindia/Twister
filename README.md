@@ -5,6 +5,7 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Twister.svg)](https://cocoapods.org/pods/Twister)  
 ![Platform](https://img.shields.io/cocoapods/p/Twister.svg?style=flat)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 Twister makes it easy to write a type safe network layer for any API. What it only needs is a model expected as API response, to confirm 'Codable(Encodable&Decodable)' protocol.
 
@@ -35,41 +36,6 @@ github "nikksindia/Twister"
 1. Add ```Alamofire``` as dependency in your project.
 2. Download and drop ```Twister.swift``` in your project.  
 3. Congratulations!  
-
-## Usage
-
-Follows these steps:
-
-1. Create a codable model for your response. See example below:
-```swift
-struct Channel:Codable{
-    var id:String?
-    var kind:String?
-    var etag:String?
-    var userId:String?
-}
-```
-2. Create a struct to manage all your endpoints. See example below:
-```swift
-let baseUrl = "https://www.yourdomain.com/v3/"
-struct TwistRoutes{
-    static let channelList = Route<Channel>(baseUrl:baseUrl,endPoint:"channels",methodType:.get)
-    static let productList = Route<Product>(baseUrl:baseUrl,endPoint:"products",methodType:.post)
-}
-```
-3. Now you are ready to call API using Twister. Go to your view controller and use 'apiRequest' method as follows:
-```swift
-let params = ["mine":true,"part":"contentDetails"] as [String : AnyObject]
-let header = ["authKey":"CRREW11472"]
-Twister.sharedInstance.apiRequest(fromRoute: TwistRoutes.channelList,params,header) { (result) in
-    switch result {
-    case .success(let model):
-        print (model)
-    case .failure(let error):
-        print (error)
-    }
-}
-```
 
 ## Contribute
 
