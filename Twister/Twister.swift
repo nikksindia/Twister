@@ -57,7 +57,7 @@ public class Twister{
     ///   - autoRetryCount: number of times api should retry automatically
     /// - Returns: promise with reponse data encapsulated in TwistReponse object
     func apiRequest<Model>(request:TwistRequest<Model>,autoRetryCount:Int? = nil)->Promise<TwistResponse<Model>>{
-        guard let config = self.configuration else{ fatalError("twistScheme not found.") }
+        guard let config = self.configuration else{ fatalError("Twist configuartion not found.") }
         let operation = Promise<TwistResponse<Model>>(in: request.context ?? .custom(queue: networkQueue), token: request.invalidationToken,{ (fulfill, reject, status) in
             
             let rq = try Alamofire.request(request.urlRequest(in: config))

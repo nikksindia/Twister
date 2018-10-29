@@ -11,10 +11,10 @@ import Foundation
 public class TwistConfig:CustomStringConvertible {
     
     enum TwistConfigKeys:String{
-        case twistScheme = "twistScheme"
-        case name = "name"
-        case headers = "headers"
-        case baseUrl = "baseUrl"
+        case requestTimeout = "request_timeout"
+        case bundleName = "Bundle name"
+        case headers = "global_headers"
+        case serverUrl = "server_url"
     }
     
     //config profile name
@@ -43,12 +43,21 @@ public class TwistConfig:CustomStringConvertible {
     }
     
     public convenience init?(){
-        let appConfig = Bundle.main.object(forInfoDictionaryKey: TwistConfigKeys.twistScheme.rawValue) as? [String:AnyObject]
-        
-        guard let baseUrl = appConfig?[TwistConfigKeys.baseUrl.rawValue] as? String else{ return nil}
-        guard let name = appConfig?[TwistConfigKeys.name.rawValue] as? String else {return nil}
+        guard let infoPlist = Bundle.main.infoDictionary else{fatalError("info.plist not found for this target")}
+        guard let baseUrl = infoPlist[TwistConfigKeys.serverUrl.rawValue] as? String
+            else {
+                debugPrint("unable to find server_url for this target")
+                return nil
+                }
+        guard let name = infoPlist[TwistConfigKeys.bundleName.rawValue] as? String
+            else{
+                debugPrint("unable to find bundle name for this target")
+                return nil
+                }
+
         self.init(name: name, baseUrl: baseUrl)
-        if let headers = appConfig?[TwistConfigKeys.headers.rawValue] as? HeaderDict{
+        timeout = infoPlist[TwistConfigKeys.requestTimeout.rawValue] as? Double ?? 20.0
+        if let headers = infoPlist[TwistConfigKeys.headers.rawValue] as? HeaderDict{
             self.globalHeaders = headers
         }
     }
