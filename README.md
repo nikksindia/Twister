@@ -1,4 +1,4 @@
-# Twister
+# Twister - Type Safe Network Layer
 
 [![Swift Version][swift-image]][swift-url]
 [![License][license-image]][license-url]
